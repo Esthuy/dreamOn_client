@@ -6,17 +6,22 @@ import { AppComponent } from './app.component';
 import { HomepageComponent } from './component/homepage/homepage.component';
 import { ConnectionComponent } from './component/connection/connection.component';
 import { UserDreamsComponent } from './component/user-dreams/user-dreams.component';
+import { CreateAccountComponent } from './component/connection/create-account/create-account.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
     AppComponent,
     HomepageComponent,
     ConnectionComponent,
-    UserDreamsComponent
+    UserDreamsComponent,
+    CreateAccountComponent
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule, 
+    FormsModule, 
+    ReactiveFormsModule, 
   ],
   providers: [],
   bootstrap: [AppComponent]

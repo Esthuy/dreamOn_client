@@ -1,0 +1,80 @@
+<h2>Créé votre compte</h2>
+<form [formGroup]="userInsertForm" (ngSubmit)="onSubmit()">
+
+    <div>
+        <label for="user-username">Pseudo</label>
+        <span *ngIf="userInsertForm.controls['username'].errors?.['required']" class="errors">* </span><br>
+
+        <input type="text" id="user-username" formControlName="username">
+        
+        <p *ngIf="userInsertForm.controls['username'].errors?.['notBlank']" class="errors"> 
+            {{ userInsertForm.controls['username'].errors?.['notBlank'].message }} 
+        </p>
+
+        <p *ngIf="userInsertForm.controls['username'].errors?.['maxlength']" class="errors">La longueur maximum du pseudo est de 30 caractères</p><br>
+       
+    </div>
+  
+
+    <br>
+    <div>
+        <label for="user-email">E-mail</label>
+        <span *ngIf="userInsertForm.controls['email'].errors?.['required']" class="errors">* </span><br>
+
+        <input type="text" id="user-email" formControlName="email">
+      
+        <p *ngIf="userInsertForm.controls['email'].errors?.['notBlank']" class="errors"> 
+            {{ userInsertForm.controls['email'].errors?.['notBlank'].message }} 
+        </p>
+        <p *ngIf="userInsertForm.controls['email'].errors?.['email']" class="errors">Doit être une adresse email</p><br>
+    </div>
+    <br>
+
+
+    <div>
+        <label for="user-birthdate">Date de naissance</label>
+        <span *ngIf="userInsertForm.controls['birthdate'].errors?.['required']" class="errors">* </span><br>
+
+        <input type="date" id="user-birthdate" formControlName="birthdate">
+
+        <p *ngIf="userInsertForm.controls['birthdate'].errors?.['birthdateBeforeToday']" class="errors"> 
+            {{ userInsertForm.controls['birthdate'].errors?.['birthdateBeforeToday'].message }} 
+        </p>
+       
+    </div>
+    <br>
+
+    
+    <div>
+        <label for="user-password">Mot de passe</label>
+        <span *ngIf="userInsertForm.controls['password'].errors?.['required']" class="errors">* </span><br>
+
+        <input type="password" id="user-password" formControlName="password"><br>
+
+        <p *ngIf="userInsertForm.controls['password'].errors?.['minlength']" class="errors">La longueur mainimum du pseudo est de 6 caractères</p><br>
+    </div>
+
+    <br>
+    <div>
+        <label for="user-confirmationPassword">Mot de passe</label>
+        <span *ngIf="userInsertForm.controls['confirmationPassword'].errors?.['required']" class="errors">* </span><br>
+
+        <input type="password" id="user-confirmationPassword" formControlName="confirmationPassword">
+
+        <p *ngIf="userInsertForm.errors?.['samePasswords']" class="errors"> 
+            {{ userInsertForm.errors?.['samePasswords'].message }} 
+        </p>
+    </div>
+ 
+<br><br>
+
+    <button type="submit">Créer un nouveau compte</button>
+    <br>
+
+
+
+</form>
+
+<p><span class="errors">*</span> Ce champ est obligatoire</p>
+
+<button (click)="return()">Retour</button>

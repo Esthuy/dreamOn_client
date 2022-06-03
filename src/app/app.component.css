@@ -1,0 +1,20 @@
+a {
+    display: inline;
+    color: #000;
+    padding: 8px 16px;
+    text-decoration: none;
+  }
+
+  
+a:hover {
+    background-color: #555;
+    color: white;
+  }
+
+header{
+      background-color: #dae9fc;
+  }
+
+footer{
+    background-color: #dae9fc;
+  }
