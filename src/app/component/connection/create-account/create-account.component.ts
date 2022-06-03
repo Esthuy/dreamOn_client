@@ -38,6 +38,7 @@ export class CreateAccountComponent implements OnInit {
 
   return(){
     this.userInsertForm.reset();
+    this.router.navigateByUrl('/homepage'); 
   }
 
 

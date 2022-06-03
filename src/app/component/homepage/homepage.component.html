@@ -1,1 +1,62 @@
-<p>homepage works!</p>
+<h2>Enregistrer un rêve</h2>
+
+<form [formGroup]="dreamInsertForm" (ngSubmit)="onSubmit()">
+    <div>
+        <label for="dream-title">Titre</label>
+        <span *ngIf="dreamInsertForm.controls['title'].errors?.['required']" class="errors">*</span><br>
+   
+        <input type="text" id="dream-title" formControlName="title" required pattern=".*[^ ].*">
+    
+        <p *ngIf="dreamInsertForm.controls['title'].errors?.['pattern']" class="errors">
+            Veuillez entrer un titre svp.
+        </p>
+
+        <p *ngIf="dreamInsertForm.controls['title'].errors?.['maxlength']" class="errors">
+            La longueur maximum du titre est de 30 caractères.
+        </p><br>
+    </div><br>
+
+    <div>
+        <label for="dream-dream">Votre rêve</label>
+        <span *ngIf="dreamInsertForm.controls['dream'].errors?.['required']" class="errors">*</span><br>
+
+        <textarea id="dream-dream" formControlName="dream" required pattern=".*[^ ].*" class="dream"></textarea>
+
+        <p *ngIf="dreamInsertForm.controls['dream'].errors?.['pattern']" class="errors">
+            Veuillez entrer un rêve svp.
+        </p>
+    </div><br>
+
+    <div>
+        <label for="dream-stars">Nombre d'étoiles</label>
+        <span *ngIf="dreamInsertForm.controls['stars'].errors?.['required']" class="errors">* </span><br>
+    
+        <input type="number" min="0" max="5" id="dream-stars" formControlName="stars"><br>
+
+        <span *ngIf="dreamInsertForm.controls['stars'].errors?.['max5stars']" class="errors"> 
+            {{ dreamInsertForm.controls['stars'].errors?.['max5stars'].message }} 
+        </span>
+    </div><br>
+
+    <div>
+        <label for="dream-date">Date</label>
+        <span *ngIf="dreamInsertForm.controls['date'].errors?.['required']" class="errors">* </span><br>
+
+        <input type="date" id="dream-date" formControlName="date">
+
+        <p *ngIf="dreamInsertForm.controls['date'].errors?.['dateBeforeToday']" class="errors"> 
+            {{ dreamInsertForm.controls['date'].errors?.['dateBeforeToday'].message }} 
+        </p>
+    </div>
+    <br>
+
+    <br><br>
+
+    <button type="submit">Ajouter un rêve</button>
+    <br>
+
+    <p><span class="errors">*</span> Ce champ est obligatoire</p>
+
+    <button (click)="return()">Retour</button>
+
+</form>

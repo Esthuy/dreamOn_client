@@ -25,11 +25,12 @@
         <label for="user-email">E-mail</label>
         <span *ngIf="userInsertForm.controls['email'].errors?.['required']" class="errors">* </span><br>
 
-        <input type="text" id="user-email" formControlName="email">
+        <input type="text" id="user-email" formControlName="email" required pattern=".*[^ ].*">
       
-        <p *ngIf="userInsertForm.controls['email'].errors?.['notBlank']" class="errors"> 
-            {{ userInsertForm.controls['email'].errors?.['notBlank'].message }} 
-        </p>
+        <p *ngIf="userInsertForm.controls['email'].errors?.['pattern']" class="errors">
+            L'email ne peut pas être vide. 
+            </p>
+       
         <p *ngIf="userInsertForm.controls['email'].errors?.['email']" class="errors">Doit être une adresse email</p><br>
     </div>
     <br>
@@ -44,7 +45,6 @@
         <p *ngIf="userInsertForm.controls['birthdate'].errors?.['birthdateBeforeToday']" class="errors"> 
             {{ userInsertForm.controls['birthdate'].errors?.['birthdateBeforeToday'].message }} 
         </p>
-       
     </div>
     <br>
 
