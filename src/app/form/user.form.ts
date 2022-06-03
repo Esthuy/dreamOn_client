@@ -2,7 +2,7 @@ import { AbstractControl, FormControl, ValidationErrors, Validators } from "@ang
 
 
 export const USER_INSERT_FORM = {
-    'username': new FormControl(null, [Validators.required, Validators.minLength(3), Validators.maxLength(30), notBlank]), 
+    'username': new FormControl(null, [Validators.required, Validators.minLength(3), Validators.maxLength(30)]), 
     'email': new FormControl(null, [Validators.required, Validators.email, notBlank]),
     'birthdate' : new FormControl(null, [Validators.required, notBlank, birthdateBeforeToday]),
     'password': new FormControl(null, [Validators.required, Validators.minLength(6), notBlank]), 
@@ -12,7 +12,7 @@ export const USER_INSERT_FORM = {
 
 
 function notBlank(control : AbstractControl) : ValidationErrors | null {
-    if(control.value == null || control.value == "" || control.value && control.value.trim() != "") 
+    if(control.value == null || control.value && control.value.trim() != "") 
         return null; 
     
     return {

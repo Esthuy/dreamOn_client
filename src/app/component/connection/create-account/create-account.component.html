@@ -5,13 +5,17 @@
         <label for="user-username">Pseudo</label>
         <span *ngIf="userInsertForm.controls['username'].errors?.['required']" class="errors">* </span><br>
 
-        <input type="text" id="user-username" formControlName="username">
+        <input type="text" id="user-username" formControlName="username" required pattern=".*[^ ].*">
         
-        <p *ngIf="userInsertForm.controls['username'].errors?.['notBlank']" class="errors"> 
-            {{ userInsertForm.controls['username'].errors?.['notBlank'].message }} 
+            
+        <p *ngIf="userInsertForm.controls['username'].errors?.['pattern']" class="errors">
+        Le pseudo ne peut pas être vide. 
         </p>
+         
 
-        <p *ngIf="userInsertForm.controls['username'].errors?.['maxlength']" class="errors">La longueur maximum du pseudo est de 30 caractères</p><br>
+        <p *ngIf="userInsertForm.controls['username'].errors?.['maxlength']" class="errors">
+            La longueur maximum du pseudo est de 30 caractères
+        </p><br>
        
     </div>
   

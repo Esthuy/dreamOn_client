@@ -11,9 +11,8 @@ import { UserService } from 'src/app/service/user.service';
   styleUrls: ['./create-account.component.css']
 })
 export class CreateAccountComponent implements OnInit {
-
   
-  constructor(builder: FormBuilder, private router: Router) { 
+  constructor(builder: FormBuilder, private router: Router, private service: UserService) { 
     this.userInsertForm = builder.group(USER_INSERT_FORM, {
       validators : samePasswords}); 
   }
@@ -26,13 +25,13 @@ export class CreateAccountComponent implements OnInit {
   onSubmit(){
     if(this.userInsertForm.valid){
       this.userToAdd = this.userInsertForm.value;  
-      // this.service.createUser(this.userToAdd).subscribe({
-      //   complete: () => {
-      //             this.userInsertForm.reset();  
-      //             this.router.navigateByUrl('/homepage'); 
-      //           },
-      //   error: (error) => alert(error.error.message),
-      // }); 
+      this.service.createUser(this.userToAdd).subscribe({
+        complete: () => {
+                  this.userInsertForm.reset();  
+                  this.router.navigateByUrl('/homepage'); 
+                },
+        error: (error) => alert(error.error.message),
+      }); 
     }
   }
 
