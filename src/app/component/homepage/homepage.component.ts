@@ -2,7 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
 import { DREAM_INSERT_FORM } from 'src/app/form/dream.form';
+import { Category } from 'src/app/model/category.model';
 import { Dream } from 'src/app/model/dream.model';
+
 
 @Component({
   selector: 'app-homepage',
@@ -17,6 +19,10 @@ export class HomepageComponent implements OnInit {
 
   dreamInsertForm : FormGroup; 
   dreamToAdd! : Dream; 
+
+  categories : Category[] = ["Nightmare", "creative", "erotic", "happy", "lucid", "recurrent"] ; 
+  
+
 
   onSubmit(){};
 

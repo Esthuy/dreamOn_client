@@ -50,6 +50,17 @@
     </div>
     <br>
 
+    <div>
+        <label for="dream-categories">Catégories</label><br>
+
+        <div class="categories">
+            <p *ngFor="let category of categories" >
+                <label for="categories">  {{category}}</label>
+                <input type="checkbox" formControlName="categories">    
+            </p>
+        </div>
+    </div>
+
     <br><br>
 
     <button type="submit">Ajouter un rêve</button>

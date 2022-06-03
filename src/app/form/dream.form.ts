@@ -1,10 +1,11 @@
 import { AbstractControl, FormControl, ValidationErrors, Validators } from "@angular/forms";
+import { formatDate } from '@angular/common';
 
 
 export const DREAM_INSERT_FORM = {
     'title': new FormControl("Mon rêve", [Validators.required, Validators.maxLength(30)]), 
     'dream': new FormControl(null, Validators.required),
-    'date': new FormControl(null, [Validators.required, dateBeforeToday]), 
+    'date': new FormControl(formatDate(Date(), 'yyyy-MM-dd', 'en'), [Validators.required, dateBeforeToday]), 
     'stars': new FormControl(null, max5stars), 
     'categories': new FormControl(null)
 }; 
