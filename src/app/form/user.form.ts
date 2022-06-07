@@ -27,6 +27,6 @@ export function samePasswords(control : AbstractControl) : ValidationErrors | nu
         return null; 
     }
     return{
-        samePasswords : {message: 'Les deux mot de passes doivent être identiques'}
+        samePasswords : {message: 'Les deux mots de passes doivent être identiques'}
     }
 };
