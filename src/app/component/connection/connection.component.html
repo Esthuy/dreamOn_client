@@ -1,4 +1,58 @@
-<p>connection works!</p>
+
+<div *ngIf="connected">
+    <h2> Compte de {{username}}</h2>
+    
+    <button (click)="disconnection()" class="red">Déconnection</button><br>
+</div>
+  
+  
+  
+
+<div *ngIf="!connected && !connection && !createAccount">
+  <h2>Connexion</h2>
+    <p>Vous n'êtes pas connecté, veuillez vous identifier ou créer un compte</p>
+    <button (click)="login()">Se connecter</button>
+    <button (click)="createUser()">Créer un compte</button>
+</div>
+  
+  
+
+<!-- Display user info if connected -->
+<!-- <br>
+<div *ngIf="connected && user != null">
+<h3>Informations</h3><br>
+<div class="info">
+    <table>
+        <thead>
+        <tr>
+          <th scope="col">Pseudo</th>
+          <th scope="col">Date de naissance</th>
+          <th scope="col">Email</th>
+        </tr>
+        </thead>
+        <tbody>
+          <td>
+            {{user.username}}
+          </td>
+
+          <td>{{user.birthdate | date: 'shortDate'}}</td>
+
+          <td>{{user.email}}</td>
+        </tbody>
+      </table>
+</div>
+<br><br> --> 
 
 
-<app-create-account></app-create-account>
+
+<!-- Display the login page -->
+<app-login *ngIf="!connected && connection"
+(return) = "hideLogin()" ></app-login>
+
+
+<!-- Display the form to create an account -->
+<app-create-account *ngIf="!connected && createAccount" 
+(return) = "hideCreateAccount()" ></app-create-account>
+
+         
+  

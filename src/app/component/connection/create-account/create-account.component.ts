@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
 import { samePasswords, USER_INSERT_FORM } from 'src/app/form/user.form';
@@ -21,6 +21,8 @@ export class CreateAccountComponent implements OnInit {
   userToAdd! : User; 
 
 
+  @Output('return')
+  returnEmit = new EventEmitter(); 
 
   onSubmit(){
     if(this.userInsertForm.valid){
@@ -29,6 +31,7 @@ export class CreateAccountComponent implements OnInit {
         complete: () => {
                   this.userInsertForm.reset();  
                   this.router.navigateByUrl('/homepage'); 
+                  alert("Votre compte a bien été créé, vous pouvez maintenant vous connectez !")
                 },
         error: (error) => alert(error.error.message),
       }); 
@@ -38,7 +41,7 @@ export class CreateAccountComponent implements OnInit {
 
   return(){
     this.userInsertForm.reset();
-    this.router.navigateByUrl('/homepage'); 
+    this.returnEmit.emit(); 
   }
 
 

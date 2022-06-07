@@ -1,3 +1,14 @@
+<h2>To Do Estelle</h2>
+<ul>
+    <li>Regler problème connection</li>
+    <li>Accepté audio dans back</li>
+    <li>Enregistrer audio</li>
+    <li>Ameliorer qualité audio</li>
+    <li>Reussir a en Enregistrer 2 d'affilés (url ne se met pas à jour dans html ?) </li>
+</ul>
+
+
+
 <h2>Enregistrer un rêve</h2>
 
 <form [formGroup]="dreamInsertForm" (ngSubmit)="onSubmit()">
@@ -71,3 +82,12 @@
     <button (click)="return()">Retour</button>
 
 </form>
+
+
+
+<div style="text-align:center;margin-top: 200px;" >
+    <button (click)="initiateRecording()" class="btn btn-primary" *ngIf="!recording" style="cursor: pointer;background-color: green;color: white;font-size: 40px;"> Start Recording </button>
+    <button (click)="stopRecording()" class="btn btn-danger" *ngIf="recording" style="cursor: pointer;background-color: red;color: white;font-size: 40px;"> Stop Recording </button>
+    
+    <audio controls="" *ngIf="url"><source [src]="sanitize(url)" type="audio/wav"></audio>
+</div>

@@ -8,6 +8,7 @@ import { UserDreamsComponent } from './component/user-dreams/user-dreams.compone
 import { CreateAccountComponent } from './component/connection/create-account/create-account.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
+import { LoginComponent } from './component/connection/login/login.component';
 
 @NgModule({
   declarations: [
@@ -15,7 +16,8 @@ import { HttpClientModule } from '@angular/common/http';
     HomepageComponent,
     ConnectionComponent,
     UserDreamsComponent,
-    CreateAccountComponent
+    CreateAccountComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,

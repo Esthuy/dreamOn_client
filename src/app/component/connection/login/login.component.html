@@ -1,0 +1,39 @@
+<h2>Connexion</h2>
+<form [formGroup]="userInsertForm" (ngSubmit)="connection()">
+
+  
+    <div>
+        <label for="user-username">Pseudo</label>
+        <span *ngIf="userInsertForm.controls['username'].errors?.['required']" class="errors">* </span><br>
+
+        <input type="text" id="user-username" formControlName="username">
+        
+        <p *ngIf="userInsertForm.controls['username'].errors?.['notBlank']" class="errors"> 
+            {{ userInsertForm.controls['username'].errors?.['notBlank'].message }} 
+        </p>
+    </div>
+    <br>
+
+    
+    <div>
+        <label for="user-password">Mot de passe</label>
+        <span *ngIf="userInsertForm.controls['password'].errors?.['required']" class="errors">* </span><br>
+
+        <input type="password" id="user-password" formControlName="password">
+    
+    </div>
+   
+ 
+<br><br>
+
+    <button type="submit">Se connecter</button>
+    <br>
+
+
+
+</form>
+
+<p><span class="errors">*</span> Ce champ est obligatoire</p>
+
+
+<button (click)="return()">Retour</button>
