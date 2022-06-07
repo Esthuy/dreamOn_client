@@ -32,13 +32,13 @@ export class DreamService {
     return this.client.get<Dream[]>(this.BASE_URL + "/all"); 
   }
 
-  //DELETE 
+  // DELETE 
   deleteDream(id : number): Observable<Dream>{
     return this.client.delete<Dream>(this.BASE_URL + id); 
   }
 
-  //MODIFY
-  modifyDream(id : number, dream : Dream): Observable<Dream>{
+  // UPDATE
+  updateDream(id : number, dream : Dream): Observable<Dream>{
     return this.client.put<Dream>(this.BASE_URL + id, dream); 
   }
 }
