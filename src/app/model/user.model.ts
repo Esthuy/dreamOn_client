@@ -1,4 +1,4 @@
-import { Dream } from "./dream.model";
+
 
 
 export interface User{
@@ -7,6 +7,6 @@ export interface User{
     password : string; 
     email : String;
     birthdate : Date; 
-    dreams : Dream[]; 
-    favorites : Dream[]; 
+    dreams : number[]; 
+    favorites : number[]; 
 }

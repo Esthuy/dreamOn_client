@@ -17,9 +17,12 @@ export class ConnectionComponent implements OnInit {
     userService.obsUser.subscribe(username => {
       this.username = username;
       if(this.connected){
-        this.getInfoUser(); 
+        this.getInfoUser(),
+        console.log(this.user);
       }
     }); 
+  
+    
    }
 
   connected!: boolean;
@@ -67,9 +70,11 @@ export class ConnectionComponent implements OnInit {
 
   deleteAccount(){
     if(confirm("Êtes-vous sûr de vouloir surrpimer votre compte ? Cette action est définitive, vos rêves seront égalements supprimés")){
-      this.disconnection(); 
       this.userService.deleteUser(this.user.id).subscribe({
-        complete : () => alert('Votre compte à bien été supprimé, nous esperons vous revoir bientôt !'),
+        complete : () => {
+          alert('Votre compte à bien été supprimé, nous esperons vous revoir bientôt !'),
+          this.disconnection()
+        } 
       })
     }
   }

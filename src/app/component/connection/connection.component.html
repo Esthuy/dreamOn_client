@@ -18,34 +18,38 @@
   
 
 <!-- Display user info if connected -->
-<!-- <br>
+<br>
 <div *ngIf="connected && user != null">
-<h3>Informations</h3><br>
-<div>
+  <h3>Informations</h3><br>
+  <div class="info">
     <table>
-        <thead>
+      <thead>
         <tr>
           <th scope="col">Pseudo</th>
           <th scope="col">Date de naissance</th>
           <th scope="col">Email</th>
         </tr>
-        </thead>
-        <tbody>
-          <td>
-            {{user.username}}
-          </td>
+      </thead>
+      <tbody>
+        <td>{{user.username}}</td>
+        <td>{{user.birthdate | date:'shortDate'}}</td>
+        <td>{{user.email}}</td>
+      </tbody>
+    </table>
 
-          <td>{{user.birthdate | date: 'shortDate'}}</td>
+  </div>
 
-          <td>{{user.email}}</td>
-        </tbody>
-      </table>
+  <br><br><br>
+  <button (click)="deleteAccount()"  class="red">Supprimer mon compte</button>
 </div>
-<br><br>  -->
 
-<button (click)="getInfoUser()">infos</button>
 
-<button (click)="deleteAccount()">Supprimer</button>
+
+
+
+
+
+
 
 
 

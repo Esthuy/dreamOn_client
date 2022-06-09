@@ -49,7 +49,7 @@ export class UserService {
     }
 
 
-
+    // CONNECTION
     connection(loginForm : loginForm){
       this.client.post<string>("http://localhost:8080/login", loginForm).subscribe({
         next: (token) => {
@@ -64,6 +64,7 @@ export class UserService {
       }); 
     }
   
+    // DISCONNECTION
     disconnection(){
       localStorage.removeItem('token'); 
       localStorage.removeItem('connected'); 
