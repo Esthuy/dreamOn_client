@@ -31,7 +31,7 @@ export class CreateAccountComponent implements OnInit {
         complete: () => {
                   this.userInsertForm.reset();  
                   this.router.navigateByUrl('/homepage'); 
-                  alert("Votre compte a bien été créé, vous pouvez maintenant vous connectez !")
+                  alert("Votre compte a bien été créé, vous pouvez maintenant vous connecter !")
                 },
         error: (error) => alert(error.error.message),
       }); 

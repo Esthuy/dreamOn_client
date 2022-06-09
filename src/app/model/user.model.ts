@@ -9,5 +9,4 @@ export interface User{
     birthdate : Date; 
     dreams : Dream[]; 
     favorites : Dream[]; 
-    
 }

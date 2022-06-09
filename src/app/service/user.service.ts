@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { User } from '../model/user.model';
 import { BehaviorSubject, Observable } from 'rxjs';
+import { loginForm } from '../model/loginForm.model';
 
 @Injectable({
   providedIn: 'root'
@@ -49,25 +50,22 @@ export class UserService {
 
 
 
-    connection(username : string, password : String){
-
-      const header = {
-        headers: new HttpHeaders()
-          .set('Authorization',  `Basic ${btoa(username.trim() +":" + password.trim())}`)
-      }
-      
-      this.client.post("http://localhost:8080/login", header).subscribe({
-        next: () => {
-          localStorage.setItem('connected',JSON.stringify(this.connected)); 
-          localStorage.setItem('username', username); 
+    connection(loginForm : loginForm){
+      this.client.post<string>("http://localhost:8080/login", loginForm).subscribe({
+        next: (token) => {
+          localStorage.setItem('token', token); 
+          localStorage.setItem('connected',JSON.stringify(this.connected));
           this.obsUserIsConnected.next(this.connected);
-          this.obsUser.next(username); 
+          localStorage.setItem('username', loginForm.username);     
+          this.obsUser.next(loginForm.username); 
+          alert("YES"); 
         },
         error: err => alert("Le pseudo ou le mot de passe est incorrect"),
       }); 
     }
   
     disconnection(){
+      localStorage.removeItem('token'); 
       localStorage.removeItem('connected'); 
       localStorage.removeItem('username');
       this.obsUserIsConnected.next(this.connected);

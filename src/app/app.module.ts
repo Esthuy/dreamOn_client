@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { LOCALE_ID, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -9,6 +9,7 @@ import { CreateAccountComponent } from './component/connection/create-account/cr
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { LoginComponent } from './component/connection/login/login.component';
+import { httpInterceptorProviders } from './interceptor';
 
 @NgModule({
   declarations: [
@@ -26,7 +27,10 @@ import { LoginComponent } from './component/connection/login/login.component';
     ReactiveFormsModule, 
     HttpClientModule , 
   ],
-  providers: [],
+  providers: [
+    { provide: LOCALE_ID, useValue: 'fr-FR' },
+    httpInterceptorProviders
+],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

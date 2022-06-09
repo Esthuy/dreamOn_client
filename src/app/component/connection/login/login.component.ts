@@ -2,6 +2,7 @@ import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
 import { USER_INSERT_FORM } from 'src/app/form/user.form';
+import { loginForm } from 'src/app/model/loginForm.model';
 import { UserService } from 'src/app/service/user.service';
 
 @Component({
@@ -12,6 +13,10 @@ import { UserService } from 'src/app/service/user.service';
 export class LoginComponent implements OnInit {
 
   userInsertForm : FormGroup; 
+  loginForm : loginForm = {
+    username:"", 
+    password:""
+  }
 
 
   @Output('return')
@@ -23,7 +28,10 @@ export class LoginComponent implements OnInit {
   } 
 
   connection(){
-    this.service.connection(this.userInsertForm.value.username, this.userInsertForm.value.password);  
+    this.loginForm.username = this.userInsertForm.value.username;
+    this.loginForm.password = this.userInsertForm.value.password;
+    
+    this.service.connection(this.loginForm);  
   }
 
 
@@ -36,3 +44,5 @@ export class LoginComponent implements OnInit {
   }
 
 }
+
+
