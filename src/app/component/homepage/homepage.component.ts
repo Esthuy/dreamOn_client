@@ -3,7 +3,6 @@ import { FormBuilder, FormGroup } from '@angular/forms';
 import { DomSanitizer } from '@angular/platform-browser';
 import { Router } from '@angular/router';
 import { DREAM_INSERT_FORM } from 'src/app/form/dream.form';
-import { Category } from 'src/app/model/category.model';
 import { Dream } from 'src/app/model/dream.model';
 import { User } from 'src/app/model/user.model';
 import { DreamService } from 'src/app/service/dream.service';
@@ -37,7 +36,44 @@ export class HomepageComponent implements OnInit {
   username! : string | null; 
   user! : User; 
 
-  categories : Category[] = ["Nightmare", "creative", "erotic", "happy", "lucid", "recurrent"] ; 
+
+  categories = [
+    {
+      id : 1,
+      value : "nightmare",
+      inFrench : "Cauchemar",
+      isChecked : false
+     },
+     {
+      id : 2,
+      value : "creative",
+      inFrench : "Créatif",
+      isChecked : false
+     },
+     {
+      id : 3,
+      value : "erotic",
+      inFrench : "Erotique",
+      isChecked : false
+     },
+     {
+      id : 4,
+      value : "happy",
+      inFrench : "Joyeux",
+      isChecked : false
+     },
+     {
+      id : 5,
+      value : "lucid",
+      inFrench : "Lucide",
+      isChecked : false
+     },
+     {
+      id : 6,
+      value : "recurrent",
+      inFrench : "Récurrent",
+      isChecked : false
+     }]; 
   
 
 
@@ -71,9 +107,18 @@ export class HomepageComponent implements OnInit {
     }
   }
 
-  categoryChecked($event: any){
-    console.log($event);
-    
+  categoryChecked(){
+    this.dreamToAdd = this.dreamInsertForm.value;
+    this.dreamToAdd.categories = []; 
+    this.categories.forEach((value) => {
+      if (value.isChecked) {
+        this.dreamToAdd.categories.push(value.value); 
+      }
+    });  
+  }
+
+  login(){
+    this.router.navigateByUrl('/connection'); 
   }
 
   ngOnInit(): void {

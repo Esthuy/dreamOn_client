@@ -1,5 +1,8 @@
 <h2>To Do Estelle</h2>
 <ul>
+    <li>favoris</li>
+    <li>Display one dream</li>
+    <li>Afficher veuillez vous connecter si user pas connecter pour voir rêves</li>
     <li>Page 404 nuage ?</li>
     <li>Ajouter isAuthenticated requete dream</li>
     <li>Accepté audio dans back</li>
@@ -9,82 +12,88 @@
     <li>Ajouter une partie suggestion ? Contact ? </li>
 </ul>
 
+<div *ngIf="!connected">
+    <p>Bienvenue sur DreamOn, l'application qui vous permet d'enregistrer vos rêves ! Veuillez vous connecter ou vous inscrire pour enregistrer et acceder aux rêves !  </p>
+    <button (click)="login()" > Se connecter/ s'inscrire </button>
+</div>
 
 
-<h2>Enregistrer un rêve</h2>
 
-<form [formGroup]="dreamInsertForm" (ngSubmit)="onSubmit()">
-    <div>
-        <label for="dream-title">Titre</label>
-        <span *ngIf="dreamInsertForm.controls['title'].errors?.['required']" class="errors">*</span><br>
-   
-        <input type="text" id="dream-title" formControlName="title" required pattern=".*[^ ].*">
+<div *ngIf="connected">
+    <h2>Enregistrer un rêve</h2>
+
+    <form [formGroup]="dreamInsertForm" (ngSubmit)="onSubmit()">
+        <div>
+            <label for="dream-title">Titre</label>
+            <span *ngIf="dreamInsertForm.controls['title'].errors?.['required']" class="errors">*</span><br>
     
-        <p *ngIf="dreamInsertForm.controls['title'].errors?.['pattern']" class="errors">
-            Veuillez entrer un titre svp.
-        </p>
+            <input type="text" id="dream-title" formControlName="title" required pattern=".*[^ ].*">
+        
+            <p *ngIf="dreamInsertForm.controls['title'].errors?.['pattern']" class="errors">
+                Veuillez entrer un titre svp.
+            </p>
 
-        <p *ngIf="dreamInsertForm.controls['title'].errors?.['maxlength']" class="errors">
-            La longueur maximum du titre est de 30 caractères.
-        </p><br>
-    </div><br>
+            <p *ngIf="dreamInsertForm.controls['title'].errors?.['maxlength']" class="errors">
+                La longueur maximum du titre est de 30 caractères.
+            </p><br>
+        </div><br>
 
-    <div>
-        <label for="dream-dream">Votre rêve</label>
-        <span *ngIf="dreamInsertForm.controls['dream'].errors?.['required']" class="errors">*</span><br>
+        <div>
+            <label for="dream-dream">Votre rêve</label>
+            <span *ngIf="dreamInsertForm.controls['dream'].errors?.['required']" class="errors">*</span><br>
 
-        <textarea id="dream-dream" formControlName="dream" required pattern=".*[^ ].*" class="dream"></textarea>
+            <textarea id="dream-dream" formControlName="dream" required pattern=".*[^ ].*" class="dream"></textarea>
 
-        <p *ngIf="dreamInsertForm.controls['dream'].errors?.['pattern']" class="errors">
-            Veuillez entrer un rêve svp.
-        </p>
-    </div><br>
+            <p *ngIf="dreamInsertForm.controls['dream'].errors?.['pattern']" class="errors">
+                Veuillez entrer un rêve svp.
+            </p>
+        </div><br>
 
-    <div>
-        <label for="dream-stars">Nombre d'étoiles</label>
-        <span *ngIf="dreamInsertForm.controls['stars'].errors?.['required']" class="errors">* </span><br>
-    
-        <input type="number" min="0" max="5" id="dream-stars" formControlName="stars"><br>
+        <div>
+            <label for="dream-stars">Nombre d'étoiles</label>
+            <span *ngIf="dreamInsertForm.controls['stars'].errors?.['required']" class="errors">* </span><br>
+        
+            <input type="number" min="0" max="5" id="dream-stars" formControlName="stars"><br>
 
-        <span *ngIf="dreamInsertForm.controls['stars'].errors?.['max5stars']" class="errors"> 
-            {{ dreamInsertForm.controls['stars'].errors?.['max5stars'].message }} 
-        </span>
-    </div><br>
+            <span *ngIf="dreamInsertForm.controls['stars'].errors?.['max5stars']" class="errors"> 
+                {{ dreamInsertForm.controls['stars'].errors?.['max5stars'].message }} 
+            </span>
+        </div><br>
 
-    <div>
-        <label for="dream-date">Date</label>
-        <span *ngIf="dreamInsertForm.controls['date'].errors?.['required']" class="errors">* </span><br>
+        <div>
+            <label for="dream-date">Date</label>
+            <span *ngIf="dreamInsertForm.controls['date'].errors?.['required']" class="errors">* </span><br>
 
-        <input type="date" id="dream-date" formControlName="date">
+            <input type="date" id="dream-date" formControlName="date">
 
-        <p *ngIf="dreamInsertForm.controls['date'].errors?.['dateBeforeToday']" class="errors"> 
-            {{ dreamInsertForm.controls['date'].errors?.['dateBeforeToday'].message }} 
-        </p>
-    </div>
-    <br>
-
-    <div>
-        <label for="dream-categories">Catégories</label><br>
-
-        <div class="categories">
-            <p *ngFor="let category of categories" >
-                <label for="categories">  {{category}}</label>
-                <input type="checkbox" value="category" formControlName="categories" (change)="categoryChecked($event)">    
+            <p *ngIf="dreamInsertForm.controls['date'].errors?.['dateBeforeToday']" class="errors"> 
+                {{ dreamInsertForm.controls['date'].errors?.['dateBeforeToday'].message }} 
             </p>
         </div>
-    </div>
+        <br>
 
-    <br><br>
+        <div>
+            <label for="dream-categories">Catégories</label><br>
 
-    <button type="submit">Ajouter un rêve</button>
-    <br>
+            <div class="categories">
+                <p *ngFor="let category of categories" >
+                    <label for="categories">  {{category.inFrench}}</label>
+                    <input type="checkbox" [(ngModel)]="category.isChecked" (change)="categoryChecked()"  [ngModelOptions]="{standalone: true}">    
+                </p>
+            </div>
+        </div>
 
-    <p><span class="errors">*</span> Ce champ est obligatoire</p>
+        <br><br>
 
-    <button (click)="return()">Retour</button>
+        <button type="submit">Ajouter un rêve</button>
+        <br>
 
-</form>
+        <p><span class="errors">*</span> Ce champ est obligatoire</p>
 
+        <button (click)="return()">Retour</button>
+
+    </form>
+</div>
 
 
 <!-- <div style="text-align:center;margin-top: 200px;" >

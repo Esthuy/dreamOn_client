@@ -1,1 +1,34 @@
 <h2>Mes rêves</h2>
+
+<div *ngIf="!connected">
+    <p>Veuillez vous connecter pour accèder à vos rêves !</p>
+    <button (click)="login()" > Se connecter/ s'inscrire </button>
+</div>
+
+<div *ngIf="connected">
+    <table>
+        <thead>
+        <tr>
+        <th scope="col">Titre</th>
+        <th scope="col">Date</th>
+        <th scope="col">Rêve</th>
+        <th scope="col">Catégories</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr *ngFor="let dream of dreams; index as i">
+        <td>
+            {{ dream.title }}
+        </td>
+        <td>{{ dream.date | date:'shortDate' }}</td>
+        <td>{{ dream.dream }}</td> 
+        <td>{{ dream.categories }}</td>
+        <td> <button (click)="displayDream(dream)">Afficher</button><br></td>
+        </tr>
+        </tbody>
+    </table>
+    
+    
+    <br><br>
+    <button (click)="addOneDream()">Ajouter un rêve</button>
+</div>

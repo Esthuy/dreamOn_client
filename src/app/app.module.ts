@@ -12,6 +12,7 @@ import { LoginComponent } from './component/connection/login/login.component';
 import { httpInterceptorProviders } from './interceptor';
 import { registerLocaleData } from '@angular/common';
 import localeFr from '@angular/common/locales/fr';
+import { DisplayOneDreamComponent } from './component/display-one-dream/display-one-dream.component';
 registerLocaleData(localeFr);
 
 
@@ -22,7 +23,8 @@ registerLocaleData(localeFr);
     ConnectionComponent,
     UserDreamsComponent,
     CreateAccountComponent,
-    LoginComponent
+    LoginComponent,
+    DisplayOneDreamComponent
   ],
   imports: [
     BrowserModule,

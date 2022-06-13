@@ -1,5 +1,3 @@
-import { Category } from "./category.model";
-
 
 export interface Dream {
     id : number; 
@@ -7,7 +5,7 @@ export interface Dream {
     dream : String; 
     stars : number; 
     date : Date; 
-    user : number; 
-    reference : number,
-    categories : Category[]; 
+    user : string; 
+    reference : string,
+    categories : any[]; 
 }

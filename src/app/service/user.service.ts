@@ -58,7 +58,6 @@ export class UserService {
           this.obsUserIsConnected.next(this.connected);
           localStorage.setItem('username', loginForm.username);     
           this.obsUser.next(loginForm.username); 
-          alert("YES"); 
         },
         error: err => alert("Le pseudo ou le mot de passe est incorrect"),
       }); 
