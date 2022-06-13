@@ -17,12 +17,9 @@ export class ConnectionComponent implements OnInit {
     userService.obsUser.subscribe(username => {
       this.username = username;
       if(this.connected){
-        this.getInfoUser(),
-        console.log(this.user);
+        this.getInfoUser()
       }
     }); 
-  
-    
    }
 
   connected!: boolean;
@@ -65,7 +62,6 @@ export class ConnectionComponent implements OnInit {
         next : (user: User) => this.user = user,
       })
     }
-  
   }
 
   deleteAccount(){

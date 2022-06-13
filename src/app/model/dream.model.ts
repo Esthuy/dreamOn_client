@@ -8,5 +8,6 @@ export interface Dream {
     stars : number; 
     date : Date; 
     user : number; 
+    reference : number,
     categories : Category[]; 
 }

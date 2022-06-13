@@ -8,23 +8,23 @@ import { Dream } from '../model/dream.model';
 })
 export class DreamService {
 
-  private readonly BASE_URL = "http://localhost:8080/dreams";
+  private readonly BASE_URL = "http://localhost:8080/dream";
 
   constructor(private client: HttpClient) { }
 
    // POST
-   createUser(dream : Dream){
+   createDream(dream : Dream){
     return this.client.post<Dream>(this.BASE_URL, dream);
   }
 
   // GET ONE 
-  getOneUser(id : number): Observable<Dream>{
+  getOneDream(id : number): Observable<Dream>{
     return this.client.get<Dream>(this.BASE_URL + "/id/" + id);
   }
 
   // GET DREAMS BY USER
-  getDreamsByUser(username : string): Observable<Dream[]>{
-    return this.client.get<Dream[]>(this.BASE_URL + "/user/" + username);
+  getDreamsByUser(uuid : string): Observable<Dream[]>{
+    return this.client.get<Dream[]>(this.BASE_URL + "/user/" + uuid);
   }
 
   // GET ALL 

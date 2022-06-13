@@ -5,6 +5,9 @@ import { Router } from '@angular/router';
 import { DREAM_INSERT_FORM } from 'src/app/form/dream.form';
 import { Category } from 'src/app/model/category.model';
 import { Dream } from 'src/app/model/dream.model';
+import { User } from 'src/app/model/user.model';
+import { DreamService } from 'src/app/service/dream.service';
+import { UserService } from 'src/app/service/user.service';
 // import * as RecordRTC from 'recordrtc';
 
 
@@ -15,22 +18,63 @@ import { Dream } from 'src/app/model/dream.model';
 })
 export class HomepageComponent implements OnInit {
 
-  constructor(builder: FormBuilder, private router: Router, private domSanitizer: DomSanitizer) { 
-    this.dreamInsertForm = builder.group(DREAM_INSERT_FORM); 
+  constructor(private userService : UserService, private dreamService : DreamService, builder: FormBuilder, private router: Router, private domSanitizer: DomSanitizer) { 
+    this.dreamInsertForm = builder.group(DREAM_INSERT_FORM);
+    userService.obsUserIsConnected.subscribe(connected => this.connected = connected); 
+    userService.obsUser.subscribe(username => {
+      this.username = username;
+      if(this.connected){
+        this.getInfoUser()
+      }
+    }); 
   }
 
   dreamInsertForm : FormGroup; 
   dreamToAdd! : Dream; 
 
+  
+  connected!: boolean;
+  username! : string | null; 
+  user! : User; 
+
   categories : Category[] = ["Nightmare", "creative", "erotic", "happy", "lucid", "recurrent"] ; 
   
 
 
-  onSubmit(){};
+  onSubmit(){
+    if(this.dreamInsertForm.valid){
+      this.dreamToAdd = this.dreamInsertForm.value; 
+      this.dreamToAdd.user = this.user.reference; 
+      this.dreamService.createDream(this.dreamToAdd).subscribe({
+        complete: () => {
+          this.dreamInsertForm.reset();
+          this.router.navigateByUrl('/dreams');
+          alert("Votre rêve a bien été ajouté !")
+        },
+        error: (error) => {
+          alert(error.message),
+          console.log(this.dreamToAdd);
+        }
+      })
+    }
+  };
 
   return(){
     this.dreamInsertForm.reset(); 
   }; 
+
+  getInfoUser(){
+    if(this.username != null){ 
+      this.userService.getOneByUsername(this.username).subscribe({
+        next : (user: User) => this.user = user,
+      })
+    }
+  }
+
+  categoryChecked($event: any){
+    console.log($event);
+    
+  }
 
   ngOnInit(): void {
   }

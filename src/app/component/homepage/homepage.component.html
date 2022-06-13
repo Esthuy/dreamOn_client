@@ -1,11 +1,12 @@
 <h2>To Do Estelle</h2>
 <ul>
+    <li>Page 404 nuage ?</li>
+    <li>Ajouter isAuthenticated requete dream</li>
     <li>Accepté audio dans back</li>
     <li>Enregistrer audio</li>
     <li>Ameliorer qualité audio</li>
     <li>Reussir a en Enregistrer 2 d'affilés (url ne se met pas à jour dans html ?) </li>
     <li>Ajouter une partie suggestion ? Contact ? </li>
-    <li>Est ce que je dois enlever le case sensitive de l'username ? </li>
 </ul>
 
 
@@ -68,7 +69,7 @@
         <div class="categories">
             <p *ngFor="let category of categories" >
                 <label for="categories">  {{category}}</label>
-                <input type="checkbox" formControlName="categories">    
+                <input type="checkbox" value="category" formControlName="categories" (change)="categoryChecked($event)">    
             </p>
         </div>
     </div>
