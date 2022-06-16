@@ -1,0 +1,22 @@
+table {
+    border-collapse: collapse;
+    border-spacing: 0;
+    width:80%;
+    border: 1px solid #ddd;
+    margin:  0px auto;
+  }
+  
+  th, td {
+    text-align: left;
+    padding: 16px;
+  }
+
+  .dream{
+    text-align: center;
+    margin: 0 auto;
+  }
+
+  .red:hover{
+    background-color: rgb(243, 161, 128);
+}
+

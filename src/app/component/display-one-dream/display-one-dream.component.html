@@ -1,1 +1,33 @@
-<p>display-one-dream works!</p>
+
+<div *ngIf="dream != null">
+
+    <br>
+        <h2>Rêve : {{dream.title}}</h2>
+
+        <table>
+            <thead>
+            <tr>
+              <th scope="col">Titre</th>
+              <th scope="col">Date</th>
+              <th scope="col">Catégories</th>
+            </tr>
+            </thead>
+            <tbody>
+              <td>{{ dream.title }}</td>
+              <td>{{ dream.date | date:'shortDate'}}</td>
+              <td>{{ dream.categories }}</td>
+              <td><button (click)="update()">Modifier</button></td>
+              <td><button class="red" (click)="delete()">Supprimer</button></td>
+            </tbody>
+          </table><br>
+          <table>
+            <thead><th scope="col"  class="dream">Rêve</th></thead>
+            <tbody> <td  class="dream">{{ dream.dream }}</td></tbody>
+          </table>
+
+          
+         
+
+
+</div>
+    

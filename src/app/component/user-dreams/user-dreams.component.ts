@@ -36,7 +36,7 @@ export class UserDreamsComponent implements OnInit {
       next: dreams => this.dreams = dreams,
       complete: () => {
         // this.order(),
-        this.nbDreams = this.dreams.length
+        this.nbDreams = this.dreams.length  
       },
       error: err => alert("echec"),
     });
@@ -52,6 +52,7 @@ export class UserDreamsComponent implements OnInit {
   }
 
   displayDream(dream : Dream){
+    this.router.navigate(['dream', dream.id]);
   }
 
   addOneDream(){

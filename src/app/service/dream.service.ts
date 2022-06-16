@@ -34,7 +34,7 @@ export class DreamService {
 
   // DELETE 
   deleteDream(id : number): Observable<Dream>{
-    return this.client.delete<Dream>(this.BASE_URL + id); 
+    return this.client.delete<Dream>(this.BASE_URL + "/" + id); 
   }
 
   // UPDATE
