@@ -20,7 +20,6 @@ export class UserDreamsComponent implements OnInit {
         this.getInfoUser()
       }
     }); 
-   
   }
 
   dreams : Dream[] = []; 
@@ -68,10 +67,6 @@ export class UserDreamsComponent implements OnInit {
     this.router.navigateByUrl('/connection'); 
   }
 
-
-  ngOnInit(): void {
-  }
-
   order(){
     if(this.orderStr === "date"){
       this.dreams = this.dreams.sort((dream1, dream2) => <any>new Date(dream2.date) - <any>new Date(dream1.date));
@@ -84,80 +79,81 @@ export class UserDreamsComponent implements OnInit {
 
     }else{
       this.dreams = this.dreams.sort((dream1, dream2) => dream2.title.localeCompare(dream1.title));
-
     }
-}
+ }
 
-search(){
-  if(this.input.trim() == ""){
-    this.getDreams(); 
-  } else {
-    switch(this.searchType){
-      case "title":{
-        this.dreamService.getDreamsByTitle(this.user.reference,this.input).subscribe({
-          next: dreams => this.dreams = dreams,
-          complete : () => {
-            this.order() 
+  search(){
+    if(this.input.trim() == ""){
+      this.getDreams(); 
+    } else {
+      switch(this.searchType){
+        case "title":{
+          this.dreamService.getDreamsByTitle(this.user.reference,this.input).subscribe({
+            next: dreams => this.dreams = dreams,
+            complete : () => {
+              this.order() 
 
-            if(this.dreams.length < this.nbDreams){
-              this.displayReset = true; 
-            }else{
-              this.displayReset = false; 
-            }
-          },
+              if(this.dreams.length < this.nbDreams){
+                this.displayReset = true; 
+              }else{
+                this.displayReset = false; 
+              }
+            },
+            error: err => alert("echec"),
+          });
+          break;
+        };
 
-          error: err => alert("echec"),
-        });
+        // case "dream": {
+        //   this.service.getDreamByContent(this.input, this.user.reference).subscribe({
+              // next: dreams => this.dreams = dreams,
+              // complete : () => {
+              //   this.order() 
 
-        break;
+              //   if(this.dreams.length < this.nbDreams){
+              //     this.displayReset = true; 
+              //   }else{
+              //     this.displayReset = false; 
+              //   }
+              // },
+
+        //     error: err => alert("echec"),
+        //   });
+
+        //   break; 
+        // }
+
+        // case "typeOfFood": {
+        //   this.service.getByTypeOfFood(this.input).subscribe({
+        //     next: restaurantsList => this.restaurants = restaurantsList,
+
+        //     complete : () => {
+        //       this.order(),
+        //       this.getStarAverage()
+
+        //       if(this.restaurants.length < this.nbRestaurant){
+        //         this.displayReset = true; 
+        //       }
+        //     },
+
+        //     error: err => alert("echec"),
+        //   });
+
+        //   break; 
+        // }
       }
-
-      // case "address": {
-      //   this.service.getByAddress(this.input).subscribe({
-      //     next: restaurantsList => this.restaurants = restaurantsList,
-
-      //     complete : () => {
-      //       this.order(),
-      //       this.getStarAverage()
-
-      //       if(this.restaurants.length < this.nbRestaurant){
-      //         this.displayReset = true; 
-      //       }
-      //     },
-
-      //     error: err => alert("echec"),
-      //   });
-
-      //   break; 
-      // }
-
-      // case "typeOfFood": {
-      //   this.service.getByTypeOfFood(this.input).subscribe({
-      //     next: restaurantsList => this.restaurants = restaurantsList,
-
-      //     complete : () => {
-      //       this.order(),
-      //       this.getStarAverage()
-
-      //       if(this.restaurants.length < this.nbRestaurant){
-      //         this.displayReset = true; 
-      //       }
-      //     },
-
-      //     error: err => alert("echec"),
-      //   });
-
-      //   break; 
-      // }
     }
   }
-}
 
 
-reset(){
-  this.getDreams(); 
-  this.displayReset = false; 
-  this.input = ""; 
-}
+  reset(){
+    this.getDreams(); 
+    this.displayReset = false; 
+    this.input = ""; 
+  }
+
+  
+  ngOnInit(): void {
+  }
 
 }

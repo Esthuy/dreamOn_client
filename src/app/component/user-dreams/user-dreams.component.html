@@ -5,35 +5,41 @@
     <button (click)="login()" > Se connecter/ s'inscrire </button>
 </div>
 
-<label>Rechercher par : </label>
-<select [(ngModel)]="searchType" >
-    <option value="title">Titre</option>
-    <option value="dream">Rêve</option>
-    <option value="categorie">Catégorie</option>
-</select>
 
-<div> 
-  <input type="text" [(ngModel)]="input">
-  <button (click)="search()">Rechercher</button><br><br>
-  <button *ngIf="displayReset" (click)="reset()">Afficher la liste complète</button>
-</div><br>
-
-<label>Trier par : </label>
-<select [(ngModel)]="orderStr" (change)="order()" >
-    <option value="date">Date</option>
-    <option value="note">Mieux notés</option>
-    <option value="asc">a-z</option>
-    <option value="dsc">z-a</option>
-</select><br><br>
 
 <div *ngIf="connected">
+
+
+    <label>Rechercher par : </label>
+    <select [(ngModel)]="searchType" >
+        <option value="title">Titre</option>
+        <option value="dream">Rêve</option>
+        <option value="categorie">Catégorie.s</option>
+    </select>
+
+    <div> 
+    <input type="text" [(ngModel)]="input">
+    <button (click)="search()">Rechercher</button><br>
+    <button *ngIf="displayReset" (click)="reset()">Afficher la liste complète</button>
+    </div><br><br>
+
+    <label>Trier par : </label>
+    <select [(ngModel)]="orderStr" (change)="order()" >
+        <option value="date">Date</option>
+        <option value="note">Mieux notés</option>
+        <option value="asc">a-z</option>
+        <option value="dsc">z-a</option>
+    </select><br><br>
+
+
+
     <table>
         <thead>
         <tr>
         <th scope="col">Titre</th>
         <th scope="col">Date</th>
         <th scope="col">Rêve</th>
-        <th scope="col">Catégories</th>
+        <th scope="col">Catégorie.s</th>
         <th scope="col">Note</th>
         </tr>
         </thead>

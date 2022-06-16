@@ -3,15 +3,19 @@
     <h2>To Do Estelle</h2>
     <ul>
         <li>Mettre sur db</li>
+        <li>Faire design plus beau via bootstrap (étoiles à sélectionner pour note ?)</li>
         <li>Chercher par rêve et catégories (boutons pour catégories ?)</li>
         <li>favoris</li>
-        <li>Update one dream</li>
+        <li>Responsive</li>
+        <li>Version partage entre amis (liste d'amis ? ou juste tous le monde ?)</li>
+        <li>Update one dream et update user</li>
         <li>Page 404 nuage ?</li>
         <li>Accepté audio dans back</li>
         <li>Enregistrer audio</li>
         <li>Ameliorer qualité audio</li>
         <li>Reussir a en Enregistrer 2 d'affilés (url ne se met pas à jour dans html ?) </li>
         <li>Ajouter une partie suggestion ? Contact ? </li>
+        <li>Proposer d'enregistrer un rêve sans être connecté et demander conection par après ?</li>
     </ul>
     
     <div *ngIf="!connected">
@@ -52,7 +56,7 @@
             </div><br>
     
             <div>
-                <label for="dream-stars">Nombre d'étoiles</label>
+                <label for="dream-stars">Note sur 5</label>
                 <span *ngIf="dreamInsertForm.controls['stars'].errors?.['required']" class="errors">* </span><br>
             
                 <input type="number" min="0" max="5" id="dream-stars" formControlName="stars"><br>
@@ -75,7 +79,7 @@
             <br>
     
             <div>
-                <label for="dream-categories">Catégories</label><br>
+                <label for="dream-categories">Catégorie.s</label><br>
     
                 <div class="categories">
                     <p *ngFor="let category of categories" >
