@@ -5,6 +5,27 @@
     <button (click)="login()" > Se connecter/ s'inscrire </button>
 </div>
 
+<label>Rechercher par : </label>
+<select [(ngModel)]="searchType" >
+    <option value="title">Titre</option>
+    <option value="dream">Rêve</option>
+    <option value="categorie">Catégorie</option>
+</select>
+
+<div> 
+  <input type="text" [(ngModel)]="input">
+  <button (click)="search()">Rechercher</button><br><br>
+  <button *ngIf="displayReset" (click)="reset()">Afficher la liste complète</button>
+</div><br>
+
+<label>Trier par : </label>
+<select [(ngModel)]="orderStr" (change)="order()" >
+    <option value="date">Date</option>
+    <option value="note">Mieux notés</option>
+    <option value="asc">a-z</option>
+    <option value="dsc">z-a</option>
+</select><br><br>
+
 <div *ngIf="connected">
     <table>
         <thead>
@@ -13,6 +34,7 @@
         <th scope="col">Date</th>
         <th scope="col">Rêve</th>
         <th scope="col">Catégories</th>
+        <th scope="col">Note</th>
         </tr>
         </thead>
         <tbody>
@@ -22,11 +44,16 @@
         </td>
         <td>{{ dream.date | date:'shortDate' }}</td>
         <td>{{ dream.dream }}</td> 
-        <td>{{ dream.categories }}</td>
+        <td><span *ngIf="dream.categories.length > 0, else noCategories">{{ dream.categories }}</span></td>
+        <td>{{ dream.stars}}/5</td>
         <td> <button (click)="displayDream(dream)">Afficher</button><br></td>
         </tr>
         </tbody>
     </table>
+
+    <ng-template #noCategories>
+        Pas de catégories
+    </ng-template>
     
     
     <br><br>

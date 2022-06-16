@@ -6,7 +6,7 @@ export interface User{
     reference :string,
     username : string; 
     password : string; 
-    email : String;
+    email : string;
     birthdate : Date; 
     dreams : string[]; 
     favorites : string[]; 

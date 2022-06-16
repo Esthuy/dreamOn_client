@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Dream } from '../model/dream.model';
+import { User } from '../model/user.model';
 
 @Injectable({
   providedIn: 'root'
@@ -25,6 +26,10 @@ export class DreamService {
   // GET DREAMS BY USER
   getDreamsByUser(uuid : string): Observable<Dream[]>{
     return this.client.get<Dream[]>(this.BASE_URL + "/user/" + uuid);
+  }
+
+  getDreamsByTitle(user : string, title : string): Observable<Dream[]>{
+    return this.client.get<Dream[]>(this.BASE_URL + "/search/" + title + "/" + user);
   }
 
   // GET ALL 

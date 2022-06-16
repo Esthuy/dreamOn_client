@@ -39,6 +39,10 @@ export class DisplayOneDreamComponent implements OnInit {
         error: () => alert("Erreur - votre rêve n'a pas pu être supprimé.") 
       });
     }
+  };
+
+  return(){
+    this.router.navigateByUrl("/dreams");
   }
 
   ngOnInit(): void {

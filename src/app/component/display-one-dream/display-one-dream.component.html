@@ -10,12 +10,14 @@
               <th scope="col">Titre</th>
               <th scope="col">Date</th>
               <th scope="col">Catégories</th>
+              <th scope="col">Note</th>
             </tr>
             </thead>
             <tbody>
               <td>{{ dream.title }}</td>
               <td>{{ dream.date | date:'shortDate'}}</td>
-              <td>{{ dream.categories }}</td>
+              <td><span *ngIf="dream.categories.length > 0, else noCategories">{{ dream.categories }}</span></td>
+              <td>{{dream.stars}}/5</td>
               <td><button (click)="update()">Modifier</button></td>
               <td><button class="red" (click)="delete()">Supprimer</button></td>
             </tbody>
@@ -25,9 +27,12 @@
             <tbody> <td  class="dream">{{ dream.dream }}</td></tbody>
           </table>
 
-          
-         
-
+    <ng-template #noCategories>
+        Pas de catégories sélectionnées
+    </ng-template>
+    
+    <br>
+    <button (click)="return()">Retour</button>
 
 </div>
     

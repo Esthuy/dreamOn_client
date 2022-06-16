@@ -1,8 +1,8 @@
 
 export interface Dream {
     id : number; 
-    title : String; 
-    dream : String; 
+    title : string; 
+    dream : string; 
     stars : number; 
     date : Date; 
     user : string; 
