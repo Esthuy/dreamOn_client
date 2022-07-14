@@ -18,6 +18,7 @@
               <td>{{ dream.date | date:'shortDate'}}</td>
               <td><span *ngIf="dream.categories.length > 0, else noCategories">{{ dream.categories }}</span></td>
               <td>{{dream.stars}}/5</td>
+              <td><button (click)="addToFavorite()">Ajouter aux favoris</button></td>
               <td><button (click)="update()">Modifier</button></td>
               <td><button class="red" (click)="delete()">Supprimer</button></td>
             </tbody>

@@ -7,5 +7,5 @@ export interface Dream {
     date : Date; 
     user : string; 
     reference : string,
-    categories : any[]; 
+    categories : string[]; 
 }

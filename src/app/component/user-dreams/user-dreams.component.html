@@ -50,7 +50,7 @@
         </td>
         <td>{{ dream.date | date:'shortDate' }}</td>
         <td>{{ dream.dream }}</td> 
-        <td><span *ngIf="dream.categories.length > 0, else noCategories">{{ dream.categories }}</span></td>
+        <td><span *ngIf="dream.categories.length > 0, else noCategories">{{ dream.categories}}</span></td>
         <td>{{ dream.stars}}/5</td>
         <td> <button (click)="displayDream(dream)">Afficher</button><br></td>
         </tr>

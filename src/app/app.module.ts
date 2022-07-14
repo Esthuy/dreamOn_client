@@ -7,7 +7,7 @@ import { ConnectionComponent } from './component/connection/connection.component
 import { UserDreamsComponent } from './component/user-dreams/user-dreams.component';
 import { CreateAccountComponent } from './component/connection/create-account/create-account.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { LoginComponent } from './component/connection/login/login.component';
 import { httpInterceptorProviders } from './interceptor';
 import { registerLocaleData } from '@angular/common';
@@ -31,7 +31,8 @@ registerLocaleData(localeFr);
     AppRoutingModule, 
     FormsModule, 
     ReactiveFormsModule, 
-    HttpClientModule , 
+    HttpClientModule ,
+    BrowserModule,        
   ],
   providers: [
     { provide: LOCALE_ID, useValue: 'fr-FR' },
@@ -40,3 +41,4 @@ registerLocaleData(localeFr);
   bootstrap: [AppComponent]
 })
 export class AppModule { }
+

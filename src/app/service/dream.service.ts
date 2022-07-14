@@ -28,8 +28,14 @@ export class DreamService {
     return this.client.get<Dream[]>(this.BASE_URL + "/user/" + uuid);
   }
 
+  // GET DREAMS BY TITLE
   getDreamsByTitle(user : string, title : string): Observable<Dream[]>{
-    return this.client.get<Dream[]>(this.BASE_URL + "/search/" + title + "/" + user);
+    return this.client.get<Dream[]>(this.BASE_URL + "/searchByTitle/" + title + "/" + user);
+  }
+
+  // GET DREAMS BY CONTENT
+  getDreamsByContent(user : string, content : string): Observable<Dream[]>{
+    return this.client.get<Dream[]>(this.BASE_URL + "/searchByContent/" + content + "/" + user)
   }
 
   // GET ALL 

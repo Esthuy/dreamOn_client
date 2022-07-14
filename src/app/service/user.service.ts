@@ -45,7 +45,12 @@ export class UserService {
 
     // UPDATE
     updateUser(id : number, user : User){
-      return this.client.put<User>(this.BASE_URL + "/" + id, user)
+      return this.client.put<User>(this.BASE_URL + "/update/" + id, user)
+    }
+
+    // ADD DREAM TO FAVORITE 
+    addDreamToFavorite(user : number, dreamUUID : string){
+      return this.client.put<User>(this.BASE_URL + "/addToFavorite/" + user, dreamUUID)
     }
 
 
